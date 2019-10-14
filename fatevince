@@ -1,0 +1,75 @@
+#!/usr/bin/ bash
+export chat_id="-1001153476060"
+export token="728234533:AAEBo1NFm9qIf3VdiA49NDoxD13DeSY0KG8"
+IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
+TANGGAL=$(date +'%H%M-%d%m%y')
+START=$(date +"%s")
+export ARCH=arm64
+export KBUILD_BUILD_USER=Zulf
+export KBUILD_BUILD_HOST=NusantaraDevs
+export LD_LIBRARY_PATH="$HOME/toolchain/bin/../lib:$PATH"
+# Push kernel to channel
+function push() {
+    PATH="$HOME/toolchain/bin:${PATH}"
+    cd AnyKernel || exit 1
+    ZIP=$(echo *.zip)
+    curl -F document=@$ZIP "https://api.telegram.org/bot$token/sendDocument" \
+        -F chat_id="$chat_id" \
+        -F "disable_web_page_preview=true" \
+        -F "parse_mode=html" \
+        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>REDMEME 5 PLUS (Vince) Android 9.0</b> | <b>$(clang --version | head -n 1 | perl -pe 's/\(https.*?\)//gs' | sed -e 's/  */ /g')</b>"
+}
+function cleaner() {
+    echo "Cleaning..."
+    rm -rf *.zip Image.gz-dtb
+    cd .. || exit 1
+    rm -rf out
+}
+# Fin Error
+function finerr() {
+    curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
+        -d chat_id="$chat_id" \
+        -d "disable_web_page_preview=true" \
+        -d "parse_mode=markdown" \
+        -d text="Job Baking Fate throw an error(s)"
+    exit 1
+}
+function info() {
+    curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
+        -d chat_id="$chat_id" \
+        -d "parse_mode=markdown" \
+        -d text="FateKernel new build!%0AStarted on $hostname%0AFor device Vince (Redmeme 5 plus)%0AAt branch test"
+}
+# Compile plox
+function compile() {
+    make -s -j$(nproc) O=out vince-perf_defconfig
+    PATH="$HOME/toolchain/bin:${PATH}" \
+    make -j$(nproc) O=out \
+                   ARCH=arm64 \
+                   CC=clang \
+                   CLANG_TRIPLE=aarch64-linux-gnu- \
+                   CROSS_COMPILE=aarch64-linux-gnu- \
+                   CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+    if ! [ -a "$IMAGE" ]; then
+        finerr
+        exit 1
+    fi
+    cp out/arch/arm64/boot/Image.gz-dtb AnyKernel/
+}
+# Zipping
+function zipping() {
+    cd AnyKernel || exit 1
+    if [ "$is_test" = true ]; then
+        zip -r9 FateVince-Clang-CFS-Test-"${TANGGAL}".zip * -x LICENCE README.md
+    else
+        zip -r9 FateVince-Clang-CFS-"${TANGGAL}".zip * -x LICENCE README.md
+    fi #ngentod
+    cd .. #well
+}
+info
+compile
+zipping
+END=$(date +"%s")
+DIFF=$(($END - $START))
+push
+cleaner
