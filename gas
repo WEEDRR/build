@@ -1,16 +1,17 @@
 #!/usr/bin/ bash
-export chat_id=""
-export token=""
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
+echo "Cloniing AnyKernel"
+git clone --quiet -j32 https://github.com/WEEDRR/AnyKernel3 -b neesan dapur
+echo "Done"
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
-export LD_LIBRARY_PATH="/home/kamisamabox/proton/bin/../lib:$PATH"
+export LD_LIBRARY_PATH="/root/tools/clang/bin/../lib:$PATH"
 # Push kernel to channel
 function push() {
-    PATH="/home/kamisamabox/proton/bin:${PATH}"
+    PATH="/root/tools/clang/bin:${PATH}"
     cd dapur || exit 1
     ZIP=$(echo *.zip)
     curl -F document=@$ZIP "https://api.telegram.org/bot$token/sendDocument" \
@@ -43,7 +44,7 @@ function info() {
 # Compile plox
 function compile() {
     make -s -j10 O=out X00T_defconfig
-    PATH="/home/kamisamabox/proton/bin:${PATH}" \
+    PATH="/root/tools/clang/bin:${PATH}" \
     make -j10 O=out \
                    ARCH=arm64 \
                    CC=clang \
@@ -60,9 +61,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 Nee-san-Test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-Test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 Nee-san-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
