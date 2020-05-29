@@ -4,8 +4,8 @@ export token=""
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
-GCC="/home/kamisamabox/toolchain/ARM64/uber/bin/aarch64-linux-android-"
-GCC32="/home/kamisamabox/toolchain/ARM/saber/bin/arm-linux-androideabi-"
+GCC="/root/tools/gcc/bin/aarch64-linux-gnu-"
+GCC32="/root/tools/gcc-arm/bin/arm-linux-gnueabi-"
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
@@ -38,7 +38,7 @@ function info() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
         -d chat_id="$chat_id" \
         -d "parse_mode=markdown" \
-        -d text="KamisamaKernul EAS new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch eas-test"
+        -d text="NeeSan new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch eas-test"
 }
 # Compile plox
 function compile() {
@@ -54,9 +54,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 KamisamaEAS-X00TD--Test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-Test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 KamisamaEAS-X00TD-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
