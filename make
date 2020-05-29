@@ -1,6 +1,4 @@
 #!/usr/bin/ bash
-export chat_id=""
-export token=""
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
