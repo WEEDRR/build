@@ -1,5 +1,8 @@
 #!/usr/bin/ bash
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
+echo "Cloniing AnyKernel"
+git clone --quiet -j32 https://github.com/WEEDRR/AnyKernel3 -b neesan dapur
+echo "Done"
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
 GCC="/root/tools/gcc/bin/aarch64-linux-android-"
