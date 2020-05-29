@@ -2,8 +2,8 @@
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
-GCC="/root/tools/gcc/bin/aarch64-linux-gnu-"
-GCC32="/root/tools/gcc-arm/bin/arm-linux-gnueabi-"
+GCC="/root/tools/gcc/bin/aarch64-linux-android-"
+GCC32="/root/tools/gcc-arm/bin/arm-linux-androideabi-"
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
