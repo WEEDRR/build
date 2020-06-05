@@ -6,7 +6,7 @@ echo "Done"
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
 GCC="/root/tools/11/bin/aarch64-elf-"
-GCC32="/root/tools/arm11 /bin/arm-eabi-"
+GCC32="/root/tools/arm11/bin/arm-eabi-"
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
