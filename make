@@ -39,7 +39,7 @@ function info() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
         -d chat_id="$chat_id" \
         -d "parse_mode=markdown" \
-        -d text="NeeSan new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch eas-test"
+        -d text="ProjectThanksYou new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch eas-test"
 }
 # Compile plox
 function compile() {
@@ -55,9 +55,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 NeeSan-Test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 ProjectThanksYou-Eas-Test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 NeeSan-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 ProjectThanksYou-Eas-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
