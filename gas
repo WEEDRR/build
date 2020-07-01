@@ -61,9 +61,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 NeeSan-Test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-Eas-test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 NeeSan-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-Eas-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
