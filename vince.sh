@@ -5,8 +5,8 @@ git clone --quiet -j32 https://github.com/WEEDRR/AnyKernel3 -b vince dapur
 echo "Done"
 TANGGAL=$(date +'%H%M-%d%m%y')
 START=$(date +"%s")
-GCC="/root/tools/gcc-elf/bin/aarch64-elf-"
-GCC32="/root/tools/gcc-arm-elf/bin/arm-eabi-"
+GCC="/root/tools/gcc/bin/aarch64-linux-android-"
+GCC32="/root/tools/gcc-arm/bin/arm-linux-androideabi-"
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
