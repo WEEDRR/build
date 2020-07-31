@@ -43,7 +43,7 @@ function info() {
 }
 # Compile plox
 function compile() {
-    make -s -j10 O=out X00T_defconfig
+    make -s -j10 O=out X00TD_defconfig
     PATH="/root/tools/clang/bin:${PATH}" \
     make -j10 O=out \
                    ARCH=arm64 \
@@ -61,9 +61,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 NeeSan-Eas-test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 perf-test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 NeeSan-Eas-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 perf-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
