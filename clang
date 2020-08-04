@@ -8,7 +8,7 @@ START=$(date +"%s")
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
-export PATH="/root/tools/clang/bin:${PATH}"
+
 # Push kernel to channel
 function push() {
     cd dapur || exit 1
@@ -44,15 +44,10 @@ function info() {
 function compile() {
     make -s -j10 O=out X00TD_defconfig
     make -j10 O=out \
-                    ARCH=arm64 \
-                    CC=clang \
-                    AR=llvm-ar \
-                    NM=llvm-nm \
-                    OBJCOPY=llvm-objcopy \
-                    OBJDUMP=llvm-objdump \
-                    STRIP=llvm-strip \
-                    CROSS_COMPILE=aarch64-linux-gnu- \
-                    CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+                   ARCH=arm64 \
+                   CC=clang \
+                   CROSS_COMPILE=aarch64-linux-gnu- \
+                   CROSS_COMPILE_ARM32=arm-linux-gnueabi-
     if ! [ -a "$IMAGE" ]; then
         finerr
         exit 1
