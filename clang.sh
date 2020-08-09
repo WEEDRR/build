@@ -31,14 +31,14 @@ function finerr() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=markdown" \
-        -d text="Job Baking Nee-san throw an error(s)"
+        -d text="Job Baking project throw an error(s)"
     exit 1
 }
 function info() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
         -d chat_id="$chat_id" \
         -d "parse_mode=markdown" \
-        -d text="Nee-san kernel new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch test"
+        -d text="projectthanksyou EAS  new build!%0AFor device X00TD (Asus Max Pro M1)%0AAt branch pelt"
 }
 # Compile plox
 function compile() {
@@ -63,9 +63,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 neesan-test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 projectthanksyou-test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 neesan-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 projectthanksyou-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
