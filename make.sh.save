@@ -1,16 +1,11 @@
 #!/usr/bin/ bash
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
-echo "Cloniing AnyKernel"
-git clone --quiet -j32 https://github.com/WEEDRR/AnyKernel3 -b neesan dapur
-echo "Done"
-TANGGAL=$(date +'%H%M-%d%m%y')
-START=$(date +"%s")
-GCC="/root/tools/gcc/bin/aarch64-linux-android-"
-GCC32="/root/tools/gcc-arm/bin/arm-linux-androideabi-"
-export ARCH=arm64
-export KBUILD_BUILD_USER=Zulf
-export KBUILD_BUILD_HOST=NusantaraDevs
-# Push kernel to channel
+echo "Cloniing AnyKernel" git 
+clone --quiet -j32 https://github.com/WEEDRR/AnyKernel3 -b neesan dapur 
+echo "Done" TANGGAL=$(date +'%H%M-%d%m%y') START=$(date +"%s") 
+GCC="/root/tools/gcc/bin/aarch64-linux-android-" export ARCH=arm64 export 
+KBUILD_BUILD_USER=Zulf export KBUILD_BUILD_HOST=NusantaraDevs
+GCC32="/root/tools/gcc-arm/bin/arm-linux-androideabi-"# Push kernel to channel
 function push() {
     cd dapur || exit 1
     ZIP=$(echo *.zip)
@@ -43,7 +38,7 @@ function info() {
 }
 # Compile plox
 function compile() {
-	make -s -C $(pwd) -j8 O=out X00TD_defconfig
+	make -s -C $(pwd) -j8 O=out X00T_defconfig
 	make -C $(pwd) CROSS_COMPILE="${GCC}" CROSS_COMPILE_ARM32="${GCC32}" O=out -j8
     if ! [ -a "$IMAGE" ]; then
         finerr
@@ -55,9 +50,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 projectthanksyou-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-EAS-Test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 projectthanksyou-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 NeeSan-EAS-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
