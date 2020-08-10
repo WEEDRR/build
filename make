@@ -43,7 +43,7 @@ function info() {
 }
 # Compile plox
 function compile() {
-	make -s -C $(pwd) -j8 O=out X00T_defconfig
+	make -s -C $(pwd) -j8 O=out X00TD_defconfig
 	make -C $(pwd) CROSS_COMPILE="${GCC}" CROSS_COMPILE_ARM32="${GCC32}" O=out -j8
     if ! [ -a "$IMAGE" ]; then
         finerr
@@ -55,9 +55,9 @@ function compile() {
 function zipping() {
     cd dapur || exit 1
     if [ "$is_test" = true ]; then
-        zip -r9 ProjectThanksYou-Eas-Test-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 neesan-Test-"${TANGGAL}".zip * -x LICENCE README.md
     else
-        zip -r9 ProjectThanksYou-Eas-"${TANGGAL}".zip * -x LICENCE README.md
+        zip -r9 neesan-"${TANGGAL}".zip * -x LICENCE README.md
     fi #ngentod
     cd .. #well
 }
