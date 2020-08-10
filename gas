@@ -8,7 +8,7 @@ START=$(date +"%s")
 export ARCH=arm64
 export KBUILD_BUILD_USER=Zulf
 export KBUILD_BUILD_HOST=NusantaraDevs
-export PATH="/root/tools/clang/bin:${PATH}"
+export PATH="/root/tools/proton/bin:${PATH}"
 # Push kernel to channel
 function push() {
     cd dapur || exit 1
